@@ -1,0 +1,516 @@
+@import url("https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Noto+Serif+KR:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: theme("colors.ink");
+    background: theme("colors.page");
+    font-family: theme("fontFamily.serifKr");
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply m-0 min-h-screen min-w-[320px] bg-page;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    @apply min-h-11 cursor-pointer border-0;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  address {
+    @apply not-italic;
+  }
+
+  h1,
+  h2 {
+    @apply m-0 font-medium text-ink;
+  }
+
+  h1 {
+    @apply text-[40px] leading-[1.18];
+  }
+
+  h1 span {
+    @apply my-[7px] block text-[18px] text-accent;
+  }
+
+  h2 {
+    @apply text-[26px] leading-[1.35];
+  }
+
+  p {
+    @apply m-0 leading-[1.75] text-muted;
+  }
+}
+
+@layer components {
+  .app,
+  .intro-screen {
+    @apply mx-auto min-h-screen w-full max-w-[430px] overflow-hidden bg-paper shadow-phone;
+  }
+
+  .parallax-app {
+    @apply relative isolate;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent 240px),
+      theme("colors.paper");
+  }
+
+  .parallax-app > section,
+  .parallax-app > footer {
+    @apply relative z-[1];
+  }
+
+  .parallax-backdrop,
+  .cherry-blossom-layer {
+    @apply pointer-events-none fixed left-1/2 top-0 z-0 h-screen w-[min(100%,430px)] -translate-x-1/2 overflow-hidden;
+  }
+
+  .parallax-backdrop {
+    @apply opacity-90;
+  }
+
+  .parallax-orchard {
+    @apply absolute top-[-8vh] h-[58vh] w-32 rounded-full blur-2xl;
+    background:
+      radial-gradient(
+        circle at 50% 18%,
+        rgba(255, 221, 229, 0.82),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 40% 52%,
+        rgba(180, 138, 120, 0.28),
+        transparent 55%
+      );
+  }
+
+  .parallax-orchard-left {
+    @apply -left-16;
+  }
+
+  .parallax-orchard-right {
+    @apply -right-16 top-[28vh];
+  }
+
+  .parallax-light {
+    @apply absolute inset-x-8 top-[18vh] h-[62vh] rounded-full blur-3xl;
+    background:
+      radial-gradient(
+        circle at 50% 30%,
+        rgba(255, 255, 255, 0.55),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 50% 70%,
+        rgba(244, 201, 210, 0.22),
+        transparent 58%
+      );
+  }
+
+  .cherry-blossom-layer {
+    @apply z-[2];
+  }
+
+  .petal {
+    position: absolute;
+    top: -12vh;
+    width: var(--petal-size);
+    height: calc(var(--petal-size) * 0.78);
+    opacity: 0;
+    border-radius: 70% 30% 70% 30%;
+    background:
+      radial-gradient(
+        circle at 30% 25%,
+        rgba(255, 255, 255, 0.96),
+        transparent 28%
+      ),
+      linear-gradient(
+        135deg,
+        rgba(255, 235, 241, 0.96),
+        rgba(234, 151, 172, 0.78)
+      );
+    box-shadow: 0 4px 12px rgba(180, 138, 120, 0.16);
+    animation: petalFall var(--petal-duration) linear infinite;
+    animation-delay: var(--petal-delay);
+    transform-origin: 50% 80%;
+  }
+
+  .petal-left {
+    left: var(--petal-x);
+  }
+
+  .petal-right {
+    right: var(--petal-x);
+  }
+
+  .section {
+    @apply px-5 py-[86px] text-center;
+  }
+
+  .reveal-section {
+    @apply animate-sectionFadeUp;
+  }
+
+  .eyebrow,
+  .small-label {
+    @apply mb-3 block font-serifKr text-xs font-bold uppercase text-accent;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .icon-button,
+  .music-button {
+    @apply inline-flex min-h-11 items-center justify-center rounded-full font-serifKr text-sm font-bold no-underline transition duration-200 ease-out active:scale-[0.98];
+  }
+
+  .primary-button {
+    @apply w-full bg-ink px-[22px] text-white;
+  }
+
+  .secondary-button,
+  .icon-button {
+    @apply border border-line bg-white px-[18px] text-ink;
+  }
+
+  .intro-screen {
+    @apply relative grid place-items-center bg-ink;
+  }
+
+  .intro-image-frame {
+    @apply absolute inset-0 bg-[#d8c9bd];
+  }
+
+  .intro-image-frame img {
+    @apply relative z-[1] h-full w-full object-cover;
+  }
+
+  .intro-image-frame::after {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(62, 53, 47, 0.1) 0%,
+      rgba(62, 53, 47, 0.78) 100%
+    );
+    content: "";
+  }
+
+  .intro-content {
+    @apply relative z-[3] w-full px-6 text-center;
+  }
+
+  .intro-content h1,
+  .intro-content p {
+    @apply text-white;
+  }
+
+  .typewriter-text {
+    @apply min-h-[62px] font-introScript text-[clamp(72px,18vw,92px)] font-normal italic leading-none text-white;
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  }
+
+  .typewriter-text .typewriter-line {
+    @apply m-0 block text-white;
+  }
+
+  .typewriter-text .typewriter-letter {
+    @apply m-0 inline-block text-white [transform-origin:50%_80%] [will-change:opacity,transform,filter];
+  }
+
+  .hero-section {
+    @apply relative grid min-h-screen place-items-center overflow-hidden bg-black px-5 py-24 text-center;
+  }
+
+  .hero-background {
+    @apply absolute inset-0;
+  }
+
+  .hero-background img {
+    @apply absolute inset-0 z-[1] h-full w-full object-cover;
+  }
+
+  .hero-placeholder {
+    @apply z-0;
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0 z-[2] bg-black/50;
+  }
+
+  .hero-copy {
+    @apply relative z-[3] px-0 pt-0 text-white;
+  }
+
+  .hero-copy .eyebrow {
+    @apply text-white/80;
+  }
+
+  .hero-copy h1 {
+    @apply text-white;
+  }
+
+  .hero-copy h1 span {
+    @apply text-white/80;
+  }
+
+  .hero-copy p {
+    @apply text-white/90;
+  }
+
+  .hero-copy p:last-child {
+    @apply mt-[18px];
+  }
+
+  .image-placeholder,
+  .modal-placeholder {
+    @apply absolute inset-0 grid place-items-center bg-photo font-serifKr text-[13px] font-bold text-[#9a8273];
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent),
+      theme("colors.photo");
+  }
+
+  .image-hidden {
+    @apply hidden;
+  }
+
+  .couple-card-list,
+  .stack-list {
+    @apply mt-7 grid gap-3.5;
+  }
+
+  .info-card {
+    @apply rounded-lg border border-line bg-white/70 p-6;
+  }
+
+  .info-card strong {
+    @apply block text-xl font-semibold leading-[1.45] text-ink;
+  }
+
+  .info-card p,
+  .info-card address {
+    @apply mt-2 leading-[1.7] text-muted;
+  }
+
+  .invitation-section {
+    @apply px-7;
+  }
+
+  .invitation-message {
+    @apply mt-7 whitespace-pre-line;
+  }
+
+  .date-card {
+    @apply mt-7;
+  }
+
+  .date-card span {
+    @apply font-serifKr font-bold text-accent;
+  }
+
+  .date-card strong {
+    @apply mt-2.5 text-[30px];
+  }
+
+  .location-card {
+    @apply mt-7;
+  }
+
+  .location-card .secondary-button,
+  .account-card .secondary-button {
+    @apply mt-[18px] w-full;
+  }
+
+  .map-box {
+    @apply mt-7 grid aspect-video place-items-center rounded-lg border border-line bg-white p-5;
+    background:
+      linear-gradient(90deg, rgba(180, 138, 120, 0.12) 1px, transparent 1px),
+      linear-gradient(rgba(180, 138, 120, 0.12) 1px, transparent 1px),
+      theme("colors.white");
+    background-size: 28px 28px;
+  }
+
+  .map-box span {
+    @apply text-lg font-bold text-ink;
+  }
+
+  .map-box small {
+    @apply mt-1.5 font-serifKr text-soft;
+  }
+
+  .button-row {
+    @apply mt-3.5 grid grid-cols-2 gap-2.5;
+  }
+
+  .gallery-grid {
+    @apply mt-7 grid grid-cols-2 gap-2.5;
+  }
+
+  .gallery-item {
+    @apply relative aspect-square min-h-0 overflow-hidden rounded-lg bg-photo;
+  }
+
+  .gallery-item img {
+    @apply relative z-[1] h-full w-full object-cover;
+  }
+
+  .gallery-item span {
+    @apply absolute inset-0 grid place-items-center font-serifKr text-[13px] font-bold text-[#9a8273];
+  }
+
+  .gallery-modal {
+    @apply fixed inset-0 z-20 grid animate-modalFade place-items-center bg-ink/75 p-6;
+  }
+
+  .gallery-modal-content {
+    @apply relative aspect-[4/5] w-[min(100%,390px)] overflow-hidden rounded-lg bg-photo;
+  }
+
+  .gallery-modal-content img {
+    @apply relative z-[1] h-full w-full object-cover;
+  }
+
+  .modal-close-button {
+    @apply absolute right-3 top-3 z-[2] min-h-9 rounded-full bg-white/90 px-3.5 font-serifKr text-[13px] font-bold text-ink;
+  }
+
+  .contact-card {
+    @apply grid grid-cols-[1fr_auto] items-center gap-3.5 text-left;
+  }
+
+  .contact-actions {
+    @apply flex gap-2;
+  }
+
+  .icon-button {
+    @apply min-w-[54px] px-3;
+  }
+
+  .account-card,
+  .share-card {
+    @apply text-left;
+  }
+
+  .share-card .primary-button {
+    @apply mt-[18px];
+  }
+
+  .rsvp-form {
+    @apply mt-7 grid gap-3.5 rounded-lg border border-line bg-white/70 p-5 text-left;
+  }
+
+  .segmented-control {
+    @apply grid grid-cols-2 gap-2;
+  }
+
+  .segmented-control button {
+    @apply rounded-full bg-[#f1e8df] font-serifKr font-bold text-muted;
+  }
+
+  .segmented-control button.selected {
+    @apply bg-ink text-white;
+  }
+
+  .rsvp-form label {
+    @apply grid gap-2 font-serifKr text-[13px] font-bold text-ink;
+  }
+
+  .rsvp-form input,
+  .rsvp-form textarea {
+    @apply w-full rounded-lg border border-line bg-white text-[15px] text-ink outline-none;
+  }
+
+  .rsvp-form input {
+    @apply h-[46px] px-3.5;
+  }
+
+  .rsvp-form textarea {
+    @apply min-h-[104px] resize-y px-3.5 py-3;
+  }
+
+  .status-message {
+    @apply mt-3 text-center font-serifKr text-[13px] font-bold text-accent;
+  }
+
+  .music-control {
+    @apply pointer-events-none fixed left-1/2 top-4 z-10 grid w-[min(100%-24px,406px)] -translate-x-1/2 justify-items-end;
+  }
+
+  .music-button {
+    @apply pointer-events-auto min-h-[38px] border border-line/90 bg-white/85 px-3.5 text-ink;
+  }
+
+  .music-control span {
+    @apply pointer-events-none mt-1.5 max-w-[230px] rounded-full bg-ink/80 px-2.5 py-1.5 font-serifKr text-[11px] text-white;
+  }
+
+  .footer-section {
+    @apply px-5 pb-[70px] pt-[58px] text-center;
+  }
+
+  .footer-section strong {
+    @apply mt-4 block font-medium text-ink;
+  }
+}
+
+@keyframes petalFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12vh, 0) rotate(0deg) scale(0.86);
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  45% {
+    transform: translate3d(calc(var(--petal-drift) * 0.55), 48vh, 0)
+      rotate(calc(150deg * var(--petal-rotate))) scale(1);
+  }
+
+  88% {
+    opacity: 0.84;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--petal-drift), 112vh, 0)
+      rotate(calc(340deg * var(--petal-rotate))) scale(0.92);
+  }
+}
+
+@layer utilities {
+  @media (max-width: 360px) {
+    .section {
+      @apply px-4;
+    }
+
+    h1 {
+      @apply text-[34px];
+    }
+
+    .contact-card {
+      @apply grid-cols-1;
+    }
+  }
+}
