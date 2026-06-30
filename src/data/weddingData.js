@@ -16,7 +16,7 @@ const weddingData = {
   },
 
   images: {
-    main: "/images/main.jpg",
+    main: "https://www.babsboardwellweddings.co.uk/wp-content/uploads/2019/02/eryri-post-wedding-photos-nature-inspired-couples-session.jpg",
     gallery: [
       "/images/gallery-1.jpg",
       "/images/gallery-2.jpg",

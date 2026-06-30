@@ -16,6 +16,8 @@ import MapSection from "./components/MapSection";
 import MusicButton from "./components/MusicButton";
 import ParallaxBackdrop from "./components/ParallaxBackdrop";
 import ShareSection from "./components/ShareSection";
+import ImgSection from "./components/ImgSection";
+import YouTube from "react-youtube";
 
 function App() {
   const [isEntered, setIsEntered] = useState(false);
@@ -39,13 +41,14 @@ function App() {
       <ParallaxBackdrop />
       <CherryBlossomLayer />
       <FloatingRightImage />
-      <MusicButton musicUrl="/music/wedding-music.mp3" />
+      <MusicButton />
       <HeroSection
         couple={weddingData.couple}
         wedding={weddingData.wedding}
         mainImage={weddingData.images.main}
       />
       <InvitationSection invitation={weddingData.invitation} />
+      <ImgSection/>
       <CoupleSection
         couple={weddingData.couple}
         parents={weddingData.parents}

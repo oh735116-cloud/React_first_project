@@ -1,4 +1,4 @@
-import weddingPhoto from "../assets/weding_poto.png";
+import weddingPhoto from "../assets/zihoon.png";
 
 function HeroSection({ couple, wedding }) {
   return (
